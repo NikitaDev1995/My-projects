@@ -65,7 +65,23 @@ class BankViewController: UIViewController {
 }
 
 extension BankViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField {
+        case loanAmount:
+            if ((textField.text?.count)! + (string.count - range.length)) > 6 {
+                return false
+            }
+        case amountOfMounth:
+            if ((textField.text?.count)! + (string.count - range.length)) > 2 {
+                return false
+            }
+        default:
+            break
+        }
+        return true
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 }
+

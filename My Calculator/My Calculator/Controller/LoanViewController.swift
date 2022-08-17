@@ -81,6 +81,27 @@ class LoanViewController: UIViewController {
 
 extension LoanViewController: UITextFieldDelegate {
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField {
+        case amountOfMounth:
+            if ((textField.text?.count)! + (string.count - range.length)) > 3 {
+                return false
+            }
+        case loanAmount:
+            if ((textField.text?.count)! + (string.count - range.length)) > 9 {
+                return false
+            }
+            
+        case percent:
+            if ((textField.text?.count)! + (string.count - range.length)) > 3 {
+                return false
+            }
+        default:
+            break
+        }
+        return true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
